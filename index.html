@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MestoRussia - галерея фотографий">
+    <meta name="author" content="Богдан Марковский">
+    <meta name="keywords" content="html, css, javascript">
+    <title>MestoRussia - галерея фотографий</title>
+    <link rel="stylesheet" href="./pages/index.css">
+</head>
+<body class="page">
+  <div class="page__container">
+    <header class="header">
+      <img class="header__logo" src="./images/logo.svg" alt="логотип сайта">
+    </header>
+    <main>
+      <section class="profile">
+        <div class="profile__list">
+          <img class="profile__avatar" src="./images/avatar.png" alt="аватар пользователя">
+          <div class="profile__info">
+            <div class="profile__title-info">
+              <p class="profile__title">Жак-Ив Кусто</p>
+              <button class="profile__edit-button"></button>
+            </div>
+            <p class="profile__subtitle">Исследователь океана</p>
+          </div>
+        </div>
+        <button class="add-photo-button"></button>
+      </section>
+      <section class="photo-grid">
+        <ul class="photo-grid__cards">
+          <li class="photo-grid__card">
+            <img class="photo-grid__card-image" src="./images/elbrus.jpg" alt="фото горы">
+            <div class="photo-grid__card-content">
+              <p class="photo-grid__card-text">Эльбрус</p>
+              <button class="like-button"></button>
+            </div>
+          </li>
+          <li class="photo-grid__card">
+            <img class="photo-grid__card-image" src="./images/baikal.jpg" alt="фото байкала">
+            <div class="photo-grid__card-content">
+              <p class="photo-grid__card-text">Байкал</p>
+              <button class="like-button"></button>
+            </div>
+          </li>
+          <li class="photo-grid__card">
+            <img class="photo-grid__card-image" src="./images/karachaevsk.jpg" alt="фото заброшенного храма">
+            <div class="photo-grid__card-content">
+              <p class="photo-grid__card-text">Карачаево-Черкессия</p>
+              <button class="like-button"></button>
+            </div>
+          </li>
+          <li class="photo-grid__card">
+            <img class="photo-grid__card-image" src="./images/moscow.jpg" alt="фото храма в москве">
+            <div class="photo-grid__card-content">
+              <p class="photo-grid__card-text">Москва</p>
+              <button class="like-button"></button>
+            </div>
+          </li>
+          <li class="photo-grid__card">
+            <img class="photo-grid__card-image" src="./images/smolensk.jpg" alt="фото храма в смоленске">
+            <div class="photo-grid__card-content">
+              <p class="photo-grid__card-text">Смоленск</p>
+              <button class="like-button"></button>
+            </div>
+          </li>
+          <li class="photo-grid__card">
+            <img class="photo-grid__card-image" src="./images/saint-petersburg.jpg" alt="фото улицы петербурга">
+            <div class="photo-grid__card-content">
+              <p class="photo-grid__card-text">Санкт-Петербург</p>
+              <button class="like-button"></button>
+            </div>
+          </li>
+       </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <form class="popup__content">
+          <p class="popup__title">Редактировать профиль</p>
+          <input class="popup__field popup__field_first" value="Жак-Ив Кусто">
+          <input class="popup__field popup__field_second" value="Исследователь океана">
+          <button class="popup__save-button">Сохранить</button>
+          <button class="popup__close-button"></button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+.footer {
+  padding-top: 38px;
+  padding-bottom: 36px;
+  display: flex;
+  justify-content: start;
+}
+
+@media screen and (min-width: 1024px) {
+  .footer {
+    padding-top: 66px;
+    padding-bottom: 60px;
+  }
+}

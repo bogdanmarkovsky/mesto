@@ -1,0 +1,9 @@
+.photo-grid__card-content {
+  padding-left: 21px;
+  padding-right: 15px;
+  background-color: #FFFFFF;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

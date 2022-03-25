@@ -1,0 +1,6 @@
+.photo-grid__card {
+  overflow: hidden;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
