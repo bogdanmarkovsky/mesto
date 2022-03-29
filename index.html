@@ -14,82 +14,82 @@
     <header class="header">
       <img class="header__logo" src="./images/logo.svg" alt="логотип сайта">
     </header>
-    <main>
+    <main class="content">
       <section class="profile">
         <div class="profile__list">
           <img class="profile__avatar" src="./images/avatar.png" alt="аватар пользователя">
           <div class="profile__info">
             <div class="profile__title-info">
-              <p class="profile__title">Жак-Ив Кусто</p>
-              <button class="profile__edit-button"></button>
+              <h1 class="profile__title">Жак-Ив Кусто</h1>
+              <button class="profile__edit-button" type="button"></button>
             </div>
-            <p class="profile__subtitle">Исследователь океана</p>
+            <h2 class="profile__subtitle">Исследователь океана</h2>
           </div>
         </div>
-        <button class="add-photo-button"></button>
+        <button class="profile__add-photo-button" type="button"></button>
       </section>
       <section class="photo-grid">
         <ul class="photo-grid__cards">
           <li class="photo-grid__card">
             <img class="photo-grid__card-image" src="./images/elbrus.jpg" alt="фото горы">
             <div class="photo-grid__card-content">
-              <p class="photo-grid__card-text">Эльбрус</p>
-              <button class="like-button"></button>
+              <h4 class="photo-grid__card-text">Эльбрус</h4>
+              <button class="photo-grid__like-button" type="button"></button>
             </div>
           </li>
           <li class="photo-grid__card">
             <img class="photo-grid__card-image" src="./images/baikal.jpg" alt="фото байкала">
             <div class="photo-grid__card-content">
-              <p class="photo-grid__card-text">Байкал</p>
-              <button class="like-button"></button>
+              <h4 class="photo-grid__card-text">Байкал</h4>
+              <button class="photo-grid__like-button" type="button"></button>
             </div>
           </li>
           <li class="photo-grid__card">
             <img class="photo-grid__card-image" src="./images/karachaevsk.jpg" alt="фото заброшенного храма">
             <div class="photo-grid__card-content">
-              <p class="photo-grid__card-text">Карачаево-Черкессия</p>
-              <button class="like-button"></button>
+              <h4 class="photo-grid__card-text">Карачаево-Черкессия</h4>
+              <button class="photo-grid__like-button" type="button"></button>
             </div>
           </li>
           <li class="photo-grid__card">
             <img class="photo-grid__card-image" src="./images/moscow.jpg" alt="фото храма в москве">
             <div class="photo-grid__card-content">
-              <p class="photo-grid__card-text">Москва</p>
-              <button class="like-button"></button>
+              <h4 class="photo-grid__card-text">Москва</h4>
+              <button class="photo-grid__like-button" type="button"></button>
             </div>
           </li>
           <li class="photo-grid__card">
             <img class="photo-grid__card-image" src="./images/smolensk.jpg" alt="фото храма в смоленске">
             <div class="photo-grid__card-content">
-              <p class="photo-grid__card-text">Смоленск</p>
-              <button class="like-button"></button>
+              <h4 class="photo-grid__card-text">Смоленск</h4>
+              <button class="photo-grid__like-button" type="button"></button>
             </div>
           </li>
           <li class="photo-grid__card">
             <img class="photo-grid__card-image" src="./images/saint-petersburg.jpg" alt="фото улицы петербурга">
             <div class="photo-grid__card-content">
-              <p class="photo-grid__card-text">Санкт-Петербург</p>
-              <button class="like-button"></button>
+              <h4 class="photo-grid__card-text">Санкт-Петербург</h4>
+              <button class="photo-grid__like-button" type="button"></button>
             </div>
           </li>
        </ul>
       </section>
     </main>
     <footer class="footer">
-      <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
+      <p class="footer__copyright">&#169; 2022 Mesto Russia</p>
     </footer>
     <div class="popup">
       <div class="popup__container">
-        <form class="popup__content">
-          <p class="popup__title">Редактировать профиль</p>
-          <input class="popup__field popup__field_first" value="Жак-Ив Кусто">
-          <input class="popup__field popup__field_second" value="Исследователь океана">
-          <button class="popup__save-button">Сохранить</button>
-          <button class="popup__close-button"></button>
+        <form class="popup__content" name="profile-form">
+          <h3 class="popup__title">Редактировать профиль</h3>
+          <input class="popup__field popup__field_type_name" value="" name="profile-name">
+          <input class="popup__field popup__field_type_job" value="" name="profile-job">
+          <button class="popup__save-button" type="submit">Сохранить</button>
         </form>
+        <button class="popup__close-button" type="button"></button>
       </div>
     </div>
   </div>
-  <script src="./script.js"></script>
+  <script src="./scripts/script.js"></script>
 </body>
 </html>

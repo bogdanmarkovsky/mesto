@@ -1,5 +1,6 @@
 .photo-grid__card-image {
-  width: 280px;
-  height: 280px;
+  width: 282px;
+  height: 282px;
   object-fit: cover;
+  flex-shrink: 0;
 }

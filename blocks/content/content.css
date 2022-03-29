@@ -1,24 +1,19 @@
-.footer {
-  padding-top: 46px;
-  padding-bottom: 36px;
-  display: flex;
-  justify-content: start;
+/*.content {
   margin-left: 19px;
   margin-right: 19px;
 }
 
 @media screen and (min-width: 768px) {
-  .footer {
+  .content {
     margin-left: 50px;
     margin-right: 50px;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .footer {
+  .content {
     margin-left: 200px;
     margin-right: 200px;
-    padding-top: 59px;
-    padding-bottom: 60px;
   }
 }
+*/
