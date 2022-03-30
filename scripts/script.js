@@ -9,8 +9,8 @@ let inputJob = document.querySelector('.popup__field_type_job');
 
 const openForm = () => {
   popUp.classList.add('popup_opened');
-  inputName.setAttribute('value', defaultName.textContent);
-  inputJob.setAttribute('value', defaultJob.textContent);
+  inputName.value = defaultName.textContent;
+  inputJob.value = defaultJob.textContent;
 }
 const closeForm = () => {
   popUp.classList.remove('popup_opened');
