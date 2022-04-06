@@ -1,0 +1,4 @@
+.card-popup__container {
+  display: flex;
+  position: relative;
+}
