@@ -1,6 +1,0 @@
-.card-popup__image {
-  object-fit: contain;
-  max-width: 75vw;
-  max-height: 75vh;
-  flex-shrink: 0;
-}

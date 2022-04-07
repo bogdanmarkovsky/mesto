@@ -35,33 +35,33 @@
     <footer class="footer">
       <p class="footer__copyright">&#169; 2022 Mesto Russia</p>
     </footer>
-    <div class="profile-popup">
-      <div class="profile-popup__container">
-        <form class="profile-popup__content" name="profile-form">
-          <h3 class="profile-popup__title">Редактировать профиль</h3>
-          <input class="profile-popup__field profile-popup__field_type_name" name="profile-name">
-          <input class="profile-popup__field profile-popup__field_type_job" name="profile-job">
-          <button class="profile-popup__save-button" type="submit">Сохранить</button>
+    <div class="popup popup_profile-form">
+      <div class="popup__container">
+        <form class="popup-form" id="profile-form" name="profile-form">
+          <h3 class="popup-form__title">Редактировать профиль</h3>
+          <input class="popup-form__field popup-form__field_type_name" name="profile-name">
+          <input class="popup-form__field popup-form__field_type_job" name="profile-job">
+          <button class="popup-form__submit-button" type="submit">Сохранить</button>
         </form>
-        <button class="profile-popup__close-button" type="button"></button>
+        <button id="profile-form-close-button" class="popup__close-button" type="button"></button>
       </div>
     </div>
-    <div class="photo-popup">
-      <div class="photo-popup__container">
-        <form class="photo-popup__content" name="photo-form">
-          <h3 class="photo-popup__title">Новое место</h3>
-          <input class="photo-popup__field photo-popup__field_type_caption" name="photo-caption" placeholder="Название">
-          <input class="photo-popup__field photo-popup__field_type_link" name="photo-link" placeholder="Ссылка на картинку">
-          <button class="photo-popup__save-button" type="submit">Создать</button>
+    <div class="popup popup_photo-form">
+      <div class="popup__container">
+        <form class="popup-form" id="photo-form" name="photo-form">
+          <h3 class="popup-form__title">Новое место</h3>
+          <input class="popup-form__field popup-form__field_type_caption" name="photo-caption" placeholder="Название">
+          <input class="popup-form__field popup-form__field_type_link" name="photo-link" placeholder="Ссылка на картинку">
+          <button class="popup-form__submit-button" type="submit">Создать</button>
         </form>
-        <button class="photo-popup__close-button" type="button"></button>
+        <button id="photo-form-close-button" class="popup__close-button" type="button"></button>
       </div>
     </div>
-    <div class="card-popup">
-      <div class="card-popup__container">
-        <img class="card-popup__image">
-        <figcaption class="card-popup__caption"></figcaption>
-        <button class="card-popup__close-button" type="button"></button>
+    <div class="popup popup_photo-card">
+      <div class="popup__container popup__container_card">
+        <img class="popup__image">
+        <figcaption class="popup__caption"></figcaption>
+        <button id="photo-card-close-button" class="popup__close-button" type="button"></button>
       </div>
     </div>
   </div>
