@@ -11,15 +11,15 @@
   align-items: center;
   margin-top: 50px;
   border-radius: 2px;
-}
-
-.popup-form__submit-button:hover  {
-  opacity: 0.8;
   cursor: pointer;
 }
 
+.popup-form__submit-button:hover {
+  opacity: 0.8;
+}
+
 @media screen and (max-width: 767px) {
-  .popup-form__submit-button  {
+  .popup-form__submit-button {
     height: 46px;
     font-size: 14px;
     margin-top: 49px;

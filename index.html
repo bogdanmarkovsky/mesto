@@ -37,22 +37,26 @@
     </footer>
     <div class="popup popup_profile-form">
       <div class="popup__container">
-        <form class="popup-form" id="profile-form" name="profile-form">
+        <form class="popup-form" name="profile_form" id="profile-form" novalidate>
           <h3 class="popup-form__title">Редактировать профиль</h3>
-          <input class="popup-form__field popup-form__field_type_name" name="profile-name">
-          <input class="popup-form__field popup-form__field_type_job" name="profile-job">
-          <button class="popup-form__submit-button" type="submit">Сохранить</button>
+          <input id="name-input" class="popup-form__field" name="profile_name" placeholder="Имя профиля" type="text" minlength="2" maxlength="40" required>
+          <span class="name-input-error"></span>
+          <input id="job-input"  class="popup-form__field" name="profile_job" placeholder="Род деятельности" type="text" minlength="2" maxlength="200" required>
+          <span class="job-input-error"></span>
+          <button id="profile-form-submit-button" class="popup-form__submit-button" type="submit">Сохранить</button>
         </form>
         <button id="profile-form-close-button" class="popup__close-button" type="button"></button>
       </div>
     </div>
     <div class="popup popup_photo-form">
       <div class="popup__container">
-        <form class="popup-form" id="photo-form" name="photo-form">
+        <form class="popup-form" name="photo_form" id="photo-form" novalidate>
           <h3 class="popup-form__title">Новое место</h3>
-          <input class="popup-form__field popup-form__field_type_caption" name="photo-caption" placeholder="Название">
-          <input class="popup-form__field popup-form__field_type_link" name="photo-link" placeholder="Ссылка на картинку">
-          <button class="popup-form__submit-button" type="submit">Создать</button>
+          <input id="caption-input" class="popup-form__field" name="photo_caption" placeholder="Название" type="text" minlength="2" maxlength="30" required>
+          <span class="caption-input-error"></span>
+          <input id="link-input" class="popup-form__field" name="photo_link" placeholder="Ссылка на картинку" type="url" required>
+          <span class="link-input-error"></span>
+          <button id="photo-form-submit-button" class="popup-form__submit-button popup-form__submit-button_disabled" type="submit" disabled>Создать</button>
         </form>
         <button id="photo-form-close-button" class="popup__close-button" type="button"></button>
       </div>
@@ -75,6 +79,7 @@
       </div>
     </li>
   </template>
-  <script src="./scripts/script.js"></script>
+  <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>
