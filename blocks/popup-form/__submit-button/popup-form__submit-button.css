@@ -9,7 +9,7 @@
   border: none;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 27px;
   border-radius: 2px;
   cursor: pointer;
 }
@@ -22,6 +22,6 @@
   .popup-form__submit-button {
     height: 46px;
     font-size: 14px;
-    margin-top: 49px;
+    margin-top: 26px;
   }
 }

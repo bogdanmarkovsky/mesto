@@ -18,6 +18,7 @@
 @import url(../blocks/popup-form/__submit-button/popup-form__submit-button.css);
 @import url(../blocks/popup-form/__submit-button/_disabled/popup-form__submit-button_disabled.css);
 @import url(../blocks/popup-form/__error/_visible/popup-form__error_visible.css);
+@import url(../blocks/span-container/span-container.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/profile/profile.css);

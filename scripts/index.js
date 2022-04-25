@@ -1,6 +1,7 @@
 const profilePopup = document.querySelector('.popup_profile-form');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileCloseButton = document.querySelector('#profile-form-close-button');
+const profileSubmitButton = document.querySelector('#profile-form-submit-button');
 const profileForm = document.forms.profile_form;
 const profileDefaultName = document.querySelector('.profile__title');
 const profileDefaultJob = document.querySelector('.profile__subtitle');
@@ -9,6 +10,7 @@ const profileInputJob = profileForm.elements.profile_job;
 const photoPopup = document.querySelector('.popup_photo-form');
 const photoAddButton = document.querySelector('.profile__add-photo-button');
 const photoCloseButton = document.querySelector('#photo-form-close-button');
+const photoSubmitButton = document.querySelector('#photo-form-submit-button');
 const photoForm = document.forms.photo_form;
 const photoInputCaption = photoForm.elements.photo_caption;
 const photoInputLink = photoForm.elements.photo_link;
@@ -43,15 +45,23 @@ const initialCards = [
   }
 ];
 
-const openPopup = (popup) => {
+function closePopupOnEscape(event) {
+  if (event.code == 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
+function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupOnEscape);
 }
 
-const closePopup = (popup) => {
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupOnEscape);
 }
 
-const createCard = (text, src) => {
+function createCard(text, src) {
   const photoCard = cardTemplate.querySelector('.photo-grid__card').cloneNode(true);
   const cardImage = photoCard.querySelector('.photo-grid__card-image');
   cardImage.setAttribute('src', src);
@@ -73,18 +83,18 @@ const createCard = (text, src) => {
   return photoCard;
 }
 
-const renderCard = (text, src) => {
+function renderCard(text, src) {
   cardContainer.prepend(createCard(text, src));
 }
 
-const profileFormSubmitHandler = (event) => {
+function profileFormSubmitHandler(event) {
   event.preventDefault();
   profileDefaultName.textContent = profileInputName.value;
   profileDefaultJob.textContent = profileInputJob.value;
   closePopup(profilePopup);
 }
 
-const photoFormSubmitHandler = (event) => {
+function photoFormSubmitHandler(event) {
   event.preventDefault();
   renderCard(photoInputCaption.value, photoInputLink.value);
   closePopup(photoPopup);
@@ -93,8 +103,6 @@ const photoFormSubmitHandler = (event) => {
 
 profileCloseButton.addEventListener('click', function () {
   closePopup(profilePopup);
-  profileInputName.value = profileDefaultName.textContent;
-  profileInputJob.value = profileDefaultJob.textContent;
 });
 
 profileForm.addEventListener('submit', profileFormSubmitHandler);
@@ -102,12 +110,12 @@ profileForm.addEventListener('submit', profileFormSubmitHandler);
 profileEditButton.addEventListener('click', function () {
   profileInputName.value = profileDefaultName.textContent;
   profileInputJob.value = profileDefaultJob.textContent;
-  resetValidationFields(profileForm, listOfValidationElements);
+  resetValidationFields(profileForm, profileSubmitButton, listOfValidationElements);
   openPopup(profilePopup);
 });
 
 photoAddButton.addEventListener('click', function () {
-  resetValidationFields(photoForm, listOfValidationElements);
+  resetValidationFields(photoForm, photoSubmitButton, listOfValidationElements);
   openPopup(photoPopup);
 });
 
@@ -123,17 +131,11 @@ cardCloseButton.addEventListener('click', function () {
 });
 
 document.querySelectorAll('.popup').forEach(popup => {
-  popup.addEventListener('click', (event) => {
+  popup.addEventListener('mousedown', (event) => {
     if (event.target === event.currentTarget) {
       closePopup(popup);
     }
   });
-});
-
-document.addEventListener('keydown', (event) => {
-  if (event.code == 'Escape') {
-    closePopup(document.querySelector('.popup_opened'));
-  }
 });
 
 initialCards.forEach(element => {

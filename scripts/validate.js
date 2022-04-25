@@ -9,16 +9,15 @@ const listOfValidationElements = {
 
 function enableValidation(object) {
   document.querySelectorAll(object.formSelector).forEach((form) => {
-    form.addEventListener('input', () => {
-      setSubmitButtonState(form, object);
-    });
+    const submitButton = document.getElementById(`${form.id}-submit-button`);
     form.querySelectorAll(object.inputSelector).forEach((input) => {
       input.addEventListener('input', () => {
         checkInputValidity(input, object);
+        setSubmitButtonState(form, submitButton, object);
       });
     });
   });
-};
+}
 
 function checkInputValidity(element, object) {
   if (element.validity.valid) {
@@ -26,38 +25,37 @@ function checkInputValidity(element, object) {
   } else {
     showInputError(element, object);
   }
-};
+}
 
 function showInputError(element, object) {
   const errorElement = document.querySelector(`.${element.id}-error`);
   errorElement.textContent = element.validationMessage;
   errorElement.classList.add(object.errorClass);
   element.classList.add(object.inputErrorClass);
-};
+}
 
 function hideInputError(element, object) {
   const errorElement = document.querySelector(`.${element.id}-error`);
   errorElement.classList.remove(object.errorClass);
   errorElement.textContent = '';
   element.classList.remove(object.inputErrorClass);
-};
+}
 
-function setSubmitButtonState(form, object) {
-  const submitButton = document.getElementById(`${form.id}-submit-button`);
+function setSubmitButtonState(form, button, object) {
   if (form.checkValidity()) {
-    submitButton.removeAttribute('disabled');
-    submitButton.classList.remove(object["inactiveButtonClass"]);
+    button.removeAttribute('disabled');
+    button.classList.remove(object.inactiveButtonClass);
   } else {
-    submitButton.setAttribute('disabled', true);
-    submitButton.classList.add(object["inactiveButtonClass"]);
+    button.setAttribute('disabled', true);
+    button.classList.add(object.inactiveButtonClass);
   }
-};
+}
 
-function resetValidationFields(popup, object) {
+function resetValidationFields(popup, button, object) {
   popup.querySelectorAll(object.inputSelector).forEach((input) => {
     hideInputError(input, object);
   });
-  setSubmitButtonState(popup, object);
-};
+  setSubmitButtonState(popup, button, object);
+}
 
 enableValidation(listOfValidationElements);
