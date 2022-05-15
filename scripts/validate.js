@@ -4,7 +4,6 @@ const listOfValidationElements = {
   submitButtonSelector: '.popup-form__submit-button',
   inactiveButtonClass: 'popup-form__submit-button_disabled',
   inputErrorClass: 'popup-form__field_type_error',
-  errorClass: 'popup-form__error_visible'
 };
 
 function enableValidation(object) {
@@ -30,13 +29,11 @@ function checkInputValidity(element, object) {
 function showInputError(element, object) {
   const errorElement = document.querySelector(`.${element.id}-error`);
   errorElement.textContent = element.validationMessage;
-  errorElement.classList.add(object.errorClass);
   element.classList.add(object.inputErrorClass);
 }
 
 function hideInputError(element, object) {
   const errorElement = document.querySelector(`.${element.id}-error`);
-  errorElement.classList.remove(object.errorClass);
   errorElement.textContent = '';
   element.classList.remove(object.inputErrorClass);
 }
