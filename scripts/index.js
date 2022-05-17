@@ -5,6 +5,8 @@ const popups = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.popup_profile-form');
 const photoPopup = document.querySelector('.popup_photo-form');
 const cardPopup = document.querySelector('.popup_photo-card');
+const cardPopupImage = cardPopup.querySelector('.popup__image');
+const cardPopupText = cardPopup.querySelector('.popup__caption');
 const profileForm = document.forms.profile_form;
 const photoForm = document.forms.photo_form;
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -22,6 +24,7 @@ const validationConfig = {
   inputSelector: '.popup-form__field',
   inactiveButtonClass: 'popup-form__submit-button_disabled',
   inputErrorClass: 'popup-form__field_type_error',
+  submitButtonClass: '.popup-form__submit-button',
 };
 
 const enableValidation = (config) => {
@@ -36,13 +39,13 @@ const enableValidation = (config) => {
 
 function createCard(name, link) {
   const card = new Card(name, link, '.card-template', handlePhotoClick);
-  cardContainer.prepend(card.renderCard());
+  return card.renderCard();
 }
 
 function handlePhotoClick(name, link) {
-  cardPopup.querySelector('.popup__image').src = link;
-  cardPopup.querySelector('.popup__image').alt = name;
-  cardPopup.querySelector('.popup__caption').textContent = name;
+  cardPopupImage.src = link;
+  cardPopupImage.alt = name;
+  cardPopupText.textContent = name;
   openPopup(cardPopup);
 }
 
@@ -55,7 +58,7 @@ function handleProfileFormSubmit(event) {
 
 function handlePhotoFormSubmit(event) {
   event.preventDefault();
-  createCard(photoInputCaption.value, photoInputLink.value);
+  cardContainer.prepend(createCard(photoInputCaption.value, photoInputLink.value));
   closePopup(photoPopup);
   photoForm.reset();
 }
@@ -104,7 +107,7 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 photoForm.addEventListener('submit', handlePhotoFormSubmit);
 
 initialCards.forEach(element => {
-  createCard(element.name, element.link);
+  cardContainer.prepend(createCard(element.name, element.link));
 });
 
 enableValidation(validationConfig);

@@ -3,9 +3,10 @@ export default class FormValidator {
     this._inputSelector = config.inputSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
+    this._submitButtonClass = config.submitButtonClass;
     this._form = form;
     this._inputs = this._form.querySelectorAll(this._inputSelector);
-    this._submitButton = this._form.querySelector('.popup-form__submit-button');
+    this._submitButton = this._form.querySelector(this._submitButtonClass);
   }
 
   enableValidation() {

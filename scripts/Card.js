@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(name, link, selector, func) {
+  constructor(name, link, selector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._selector = selector;
@@ -8,9 +8,7 @@ export default class Card {
     this._photoCardText = this._photoCard.querySelector('.photo-grid__card-text');
     this._likeButton = this._photoCard.querySelector('.photo-grid__like-button');
     this._removeButton = this._photoCard.querySelector('.photo-grid__remove-button');
-    this._popupImage = document.querySelector('.popup__image');
-    this._popupCaption = document.querySelector('.popup__caption');
-    this._func = func;
+    this._handleCardClick = handleCardClick;
   }
 
   _fillCardContent() {
@@ -35,7 +33,7 @@ export default class Card {
       this._handleDeleteButton();
     });
     this._photoCardImage.addEventListener('click', () => {
-      this._func(this._name, this._link);
+      this._handleCardClick(this._name, this._link);
     });
   }
 
