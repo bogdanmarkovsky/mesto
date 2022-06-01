@@ -1,23 +1,52 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import initialCards from './initialCards.js';
-const popups = document.querySelectorAll('.popup');
-const profilePopup = document.querySelector('.popup_profile-form');
-const photoPopup = document.querySelector('.popup_photo-form');
-const cardPopup = document.querySelector('.popup_photo-card');
-const cardPopupImage = cardPopup.querySelector('.popup__image');
-const cardPopupText = cardPopup.querySelector('.popup__caption');
+import Card from './components/Card.js';
+import FormValidator from './components/FormValidator.js';
+import PicturePopup from './components/PicturePopup.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import Section from './components/Section.js';
+import UserInfo from './components/UserInfo.js';
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+const cardListSelector = '.photo-grid__cards';
+const defaultCardList = new Section({
+  data: initialCards, renderer: (item) => {
+    const card = new Card(item, '.card-template', handlePhotoClick);
+    const cardElement = card.generateCard();
+    defaultCardList.addItem(cardElement);
+  }
+}, cardListSelector);
 const profileForm = document.forms.profile_form;
-const photoForm = document.forms.photo_form;
 const profileEditButton = document.querySelector('.profile__edit-button');
-const photoAddButton = document.querySelector('.profile__add-photo-button');
-const profileDefaultName = document.querySelector('.profile__title');
-const profileDefaultJob = document.querySelector('.profile__subtitle');
 const profileInputName = profileForm.elements.profile_name;
 const profileInputJob = profileForm.elements.profile_job;
-const photoInputCaption = photoForm.elements.photo_caption;
-const photoInputLink = photoForm.elements.photo_link;
-const cardContainer = document.querySelector('.photo-grid__cards');
+const photoAddButton = document.querySelector('.profile__add-photo-button');
+const userInfo = new UserInfo('.profile__title', '.profile__subtitle');
+const profilePopup = new PopupWithForm('.popup_profile-form', handleProfileFormSubmit);
+const photoPopup = new PopupWithForm('.popup_photo-form', handlePhotoFormSubmit);
+const cardPopup = new PicturePopup('.popup_photo-card');
 const formValidators = {};
 const validationConfig = {
   formSelector: '.popup-form',
@@ -27,7 +56,7 @@ const validationConfig = {
   submitButtonClass: '.popup-form__submit-button',
 };
 
-const enableValidation = (config) => {
+function enableValidation(config) {
   const formList = Array.from(document.querySelectorAll(config.formSelector))
   formList.forEach((formElement) => {
     const validator = new FormValidator(config, formElement);
@@ -37,77 +66,44 @@ const enableValidation = (config) => {
   });
 };
 
-function createCard(name, link) {
-  const card = new Card(name, link, '.card-template', handlePhotoClick);
-  return card.renderCard();
+function handleProfileFormSubmit(data) {
+  userInfo.setUserInfo(data);
+  profilePopup.close();
+}
+
+function handlePhotoFormSubmit(data) {
+  const newCardInputValue = [{
+    name: data.photo_caption,
+    link: data.photo_link,
+  }];
+  const newRenderCard = new Section({
+    data: newCardInputValue, renderer: (item) => {
+      const card = new Card(item, '.card-template', handlePhotoClick);
+      const cardElement = card.generateCard();
+      newRenderCard.addItem(cardElement);
+    }
+  }, cardListSelector);
+  newRenderCard.renderItems();
+  photoPopup.close();
 }
 
 function handlePhotoClick(name, link) {
-  cardPopupImage.src = link;
-  cardPopupImage.alt = name;
-  cardPopupText.textContent = name;
-  openPopup(cardPopup);
+  cardPopup.open(name, link);
 }
-
-function handleProfileFormSubmit(event) {
-  event.preventDefault();
-  profileDefaultName.textContent = profileInputName.value;
-  profileDefaultJob.textContent = profileInputJob.value;
-  closePopup(profilePopup);
-}
-
-function handlePhotoFormSubmit(event) {
-  event.preventDefault();
-  cardContainer.prepend(createCard(photoInputCaption.value, photoInputLink.value));
-  closePopup(photoPopup);
-  photoForm.reset();
-}
-
-function closePopupOnEscape(event) {
-  if (event.code == 'Escape') {
-    closePopup(document.querySelector('.popup_opened'));
-  }
-}
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupOnEscape);
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupOnEscape);
-}
-
-popups.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains('popup__close-button')) {
-      closePopup(popup);
-    }
-  });
-});
 
 profileEditButton.addEventListener('click', function () {
-  profileInputName.value = profileDefaultName.textContent;
-  profileInputJob.value = profileDefaultJob.textContent;
+  const data = userInfo.getUserInfo();
+  profileInputName.value = data.name;
+  profileInputJob.value = data.job;
   formValidators['profile_form'].resetValidationFields();
-  openPopup(profilePopup);
+  profilePopup.open();
 });
-
 photoAddButton.addEventListener('click', function () {
-  photoForm.reset();
   formValidators['photo_form'].resetValidationFields();
-  openPopup(photoPopup);
+  photoPopup.open();
 });
-
-profileForm.addEventListener('submit', handleProfileFormSubmit);
-photoForm.addEventListener('submit', handlePhotoFormSubmit);
-
-initialCards.forEach(element => {
-  cardContainer.prepend(createCard(element.name, element.link));
-});
-
+cardPopup.setEventListeners();
+profilePopup.setEventListeners();
+photoPopup.setEventListeners();
+defaultCardList.renderItems();
 enableValidation(validationConfig);

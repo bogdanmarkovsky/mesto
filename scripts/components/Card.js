@@ -1,7 +1,7 @@
 export default class Card {
-  constructor(name, link, selector, handleCardClick) {
-    this._name = name;
-    this._link = link;
+  constructor(item, selector, handleCardClick) {
+    this._name = item.name;
+    this._link = item.link;
     this._selector = selector;
     this._photoCard = document.querySelector(this._selector).content.querySelector('.photo-grid__card').cloneNode(true);
     this._photoCardImage = this._photoCard.querySelector('.photo-grid__card-image');
@@ -37,7 +37,7 @@ export default class Card {
     });
   }
 
-  renderCard() {
+  generateCard() {
     this._fillCardContent();
     this._setEventListeners();
     return this._photoCard;
