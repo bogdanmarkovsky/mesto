@@ -1,48 +1,16 @@
 import './index.css';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
-import PicturePopup from '../components/PicturePopup.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
-const arkhyzImage = new URL('../images/arkhyz.jpg', import.meta.url);
-const chelybinskImage = new URL('../images/chelyabinsk-oblast.jpg', import.meta.url);
-const ivanovoImage = new URL('../images/ivanovo.jpg', import.meta.url);
-const kamchatkaImage = new URL('../images/kamchatka.jpg', import.meta.url);
-const kholmogorskyImage = new URL('../images/kholmogorsky-rayon.jpg', import.meta.url);
-const baikalImage = new URL('../images/baikal.jpg', import.meta.url);
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: arkhyzImage,
-  },
-  {
-    name: 'Челябинская область',
-    link: chelybinskImage,
-  },
-  {
-    name: 'Иваново',
-    link: ivanovoImage,
-  },
-  {
-    name: 'Камчатка',
-    link: kamchatkaImage,
-  },
-  {
-    name: 'Холмогорский район',
-    link: kholmogorskyImage,
-  },
-  {
-    name: 'Байкал',
-    link: baikalImage,
-  }
-];
+import { initialCards } from '../utils/constants';
+import { validationConfig } from '../utils/constants';
 const cardListSelector = '.photo-grid__cards';
 const defaultCardList = new Section({
   data: initialCards, renderer: (item) => {
-    const card = new Card(item, '.card-template', handlePhotoClick);
-    const cardElement = card.generateCard();
-    defaultCardList.addItem(cardElement);
+    defaultCardList.addItem(createCard(item));
   }
 }, cardListSelector);
 const profileForm = document.forms.profile_form;
@@ -53,15 +21,8 @@ const photoAddButton = document.querySelector('.profile__add-photo-button');
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle');
 const profilePopup = new PopupWithForm('.popup_profile-form', handleProfileFormSubmit);
 const photoPopup = new PopupWithForm('.popup_photo-form', handlePhotoFormSubmit);
-const cardPopup = new PicturePopup('.popup_photo-card');
+const cardPopup = new PopupWithImage('.popup_photo-card');
 const formValidators = {};
-const validationConfig = {
-  formSelector: '.popup-form',
-  inputSelector: '.popup-form__field',
-  inactiveButtonClass: 'popup-form__submit-button_disabled',
-  inputErrorClass: 'popup-form__field_type_error',
-  submitButtonClass: '.popup-form__submit-button',
-};
 
 function enableValidation(config) {
   const formList = Array.from(document.querySelectorAll(config.formSelector))
@@ -71,7 +32,12 @@ function enableValidation(config) {
     formValidators[formName] = validator;
     validator.enableValidation();
   });
-};
+}
+
+function createCard(item) {
+  const card = new Card(item, '.card-template', handlePhotoClick);
+  return card.generateCard();
+}
 
 function handleProfileFormSubmit(data) {
   userInfo.setUserInfo(data);
@@ -79,18 +45,11 @@ function handleProfileFormSubmit(data) {
 }
 
 function handlePhotoFormSubmit(data) {
-  const newCardInputValue = [{
+  const newCardInputValues = {
     name: data.photo_caption,
     link: data.photo_link,
-  }];
-  const newRenderCard = new Section({
-    data: newCardInputValue, renderer: (item) => {
-      const card = new Card(item, '.card-template', handlePhotoClick);
-      const cardElement = card.generateCard();
-      newRenderCard.addItem(cardElement);
-    }
-  }, cardListSelector);
-  newRenderCard.renderItems();
+  };
+  defaultCardList.addItem(createCard(newCardInputValues));
   photoPopup.close();
 }
 
@@ -98,10 +57,14 @@ function handlePhotoClick(name, link) {
   cardPopup.open(name, link);
 }
 
-profileEditButton.addEventListener('click', function () {
+function fillProfileFields() {
   const data = userInfo.getUserInfo();
   profileInputName.value = data.name;
   profileInputJob.value = data.job;
+}
+
+profileEditButton.addEventListener('click', function () {
+  fillProfileFields();
   formValidators['profile_form'].resetValidationFields();
   profilePopup.open();
 });

@@ -23,6 +23,7 @@ export default class Card {
 
   _handleDeleteButton() {
     this._photoCard.remove();
+    this._photoCard = null;
   }
 
   _setEventListeners() {
