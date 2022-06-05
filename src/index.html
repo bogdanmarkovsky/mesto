@@ -7,17 +7,16 @@
     <meta name="author" content="Богдан Марковский">
     <meta name="keywords" content="html, css, javascript">
     <title>MestoRussia - галерея фотографий</title>
-    <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
   <div class="page__container">
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="логотип сайта">
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="логотип сайта">
     </header>
     <main class="content">
       <section class="profile">
         <div class="profile__list">
-          <img class="profile__avatar" src="./images/avatar.png" alt="аватар пользователя">
+          <img class="profile__avatar" src="<%=require('./images/avatar.png')%>"  alt="аватар пользователя">
           <div class="profile__info">
             <div class="profile__title-info">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -79,14 +78,5 @@
       </div>
     </li>
   </template>
-  <script type="module" src="./scripts/components/FormValidator.js"></script>
-  <script type="module" src="./scripts/components/Card.js"></script>
-  <script type="module" src="./scripts/components/Popup.js"></script>
-  <script type="module" src="./scripts/components/PicturePopup.js"></script>
-  <script type="module" src="./scripts/components/PopupWithForm.js"></script>
-  <script type="module" src="./scripts/components/UserInfo.js"></script>
-  <script type="module" src="./scripts/components/Section.js"></script>
-  <script type="module" src="./scripts/components/Card.js"></script>
-  <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>

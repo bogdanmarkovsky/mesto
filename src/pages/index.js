@@ -1,33 +1,40 @@
-import Card from './components/Card.js';
-import FormValidator from './components/FormValidator.js';
-import PicturePopup from './components/PicturePopup.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import Section from './components/Section.js';
-import UserInfo from './components/UserInfo.js';
+import './index.css';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import PicturePopup from '../components/PicturePopup.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
+const arkhyzImage = new URL('../images/arkhyz.jpg', import.meta.url);
+const chelybinskImage = new URL('../images/chelyabinsk-oblast.jpg', import.meta.url);
+const ivanovoImage = new URL('../images/ivanovo.jpg', import.meta.url);
+const kamchatkaImage = new URL('../images/kamchatka.jpg', import.meta.url);
+const kholmogorskyImage = new URL('../images/kholmogorsky-rayon.jpg', import.meta.url);
+const baikalImage = new URL('../images/baikal.jpg', import.meta.url);
 const initialCards = [
   {
     name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    link: arkhyzImage,
   },
   {
     name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    link: chelybinskImage,
   },
   {
     name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    link: ivanovoImage,
   },
   {
     name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    link: kamchatkaImage,
   },
   {
     name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    link: kholmogorskyImage,
   },
   {
     name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    link: baikalImage,
   }
 ];
 const cardListSelector = '.photo-grid__cards';
