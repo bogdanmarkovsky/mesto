@@ -33,9 +33,11 @@
 .photo-grid__cards{display:grid;grid-template-columns:282px;grid-template-rows:repeat(6,1fr);list-style:none;margin:0 auto;padding:0;row-gap:20px}@media screen and (min-width:768px){.photo-grid__cards{-moz-column-gap:17px;column-gap:17px;grid-template-columns:repeat(2,282px);grid-template-rows:repeat(3,1fr)}}@media screen and (min-width:1024px){.photo-grid__cards{grid-template-columns:repeat(3,282px);grid-template-rows:repeat(2,1fr)}}
 .photo-grid__card{border-radius:10px;display:flex;flex-direction:column;overflow:hidden;position:relative}
 .photo-grid__card-image{flex-shrink:0;height:282px;-o-object-fit:cover;object-fit:cover;width:282px}.photo-grid__card-image:hover{cursor:pointer}
-.photo-grid__remove-button{background-color:transparent;background-image:url(823b0cf1b0b7e9cb7cad.svg);background-position:50%;background-repeat:no-repeat;border:none;height:19px;position:absolute;right:20px;top:20px;width:18px}.photo-grid__remove-button:hover{cursor:pointer;opacity:.6}
-.photo-grid__card-content{align-items:center;background-color:#fff;display:flex;justify-content:space-between;padding:25px 19px 26px 21px}
+.photo-grid__remove-button{background-color:transparent;background-image:url(823b0cf1b0b7e9cb7cad.svg);background-position:50%;background-repeat:no-repeat;border:none;height:19px;position:absolute;right:15px;top:18px;width:18px}.photo-grid__remove-button:hover{cursor:pointer;opacity:.6}
+.photo-grid__card-content{align-items:center;background-color:#fff;display:flex;justify-content:space-between;padding:22px 19px 22px 21px}
 .photo-grid__card-text{color:#000;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:0;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap;width:85%}
+.photo-grid__like-container{align-items:center;display:flex;flex-direction:column;gap:3px;justify-content:center}
+.photo-grid__like-counter{color:#000;font-size:13px;font-style:normal;font-weight:400;height:13px;line-height:16px;overflow:hidden;text-align:center;text-overflow:ellipsis;white-space:nowrap;width:22px}
 .photo-grid__like-button{background-color:transparent;background-image:url(87ed371465c7a6a1cd01.svg);background-position:50%;background-repeat:no-repeat;border:none;height:19px;padding:0;width:22px}.photo-grid__like-button:hover{cursor:pointer;opacity:.5}
 .photo-grid__like-button_active{background-image:url(fe17a515669479b1e649.svg)}
 .footer{display:flex;justify-content:flex-start;margin-left:19px;margin-right:19px;padding-bottom:36px;padding-top:46px}@media screen and (min-width:768px){.footer{margin-left:50px;margin-right:50px}}@media screen and (min-width:1280px){.footer{margin-left:200px;margin-right:200px;padding-bottom:60px;padding-top:59px}}
