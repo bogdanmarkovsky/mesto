@@ -26,7 +26,7 @@ export const initialCards = [
     link: kholmogorskyImage,
   },
   {
-    name: 'Байкал',
+    name: 'Карачаевск',
     link: baikalImage,
   }
 ];
