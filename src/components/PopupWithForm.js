@@ -20,8 +20,16 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
     this._popUp.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._handleSubmitForm(this._getInputValues(), this._submitButton);
+      this._handleSubmitForm(this._getInputValues());
     });
+  }
+
+  updateLoading(isLoading, messageBefore = "Сохранить", messageAfter = "Сохранение...") {
+    if (isLoading) {
+      this._submitButton.textContent = messageAfter;
+    } else {
+      this._submitButton.textContent = messageBefore;
+    }
   }
 
   close() {
